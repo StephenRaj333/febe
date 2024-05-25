@@ -10,7 +10,7 @@ export function App() {
   const [tableData,setTableData] = useState([]);  
 
   useEffect(() => {
-    Axios.get("http://localhost:3000/stephen").    
+    Axios.get("http://localhost:3000/").    
     then((res) => setTableData(res.data))   
     .catch((err) => console.log("Error fecthing data",err));  
   },[tableData])  
@@ -22,7 +22,7 @@ export function App() {
   const handleSubmit = (e) => { 
     e.preventDefault(); 
     const newData = {...data,id: tableData.length + 1}; 
-    Axios.post('http://localhost:3000/stephen',newData)
+    Axios.post('http://localhost:3000/',newData)
     .then((res) => setTableData([...tableData,res.data]))   
     .catch((err) => console.log("Error" , err));   
     setData({
