@@ -1,5 +1,1 @@
-{
-  "id": 1,
-  "name": "James",
-  "course": "Phyics"
-}
+[{"name":"Stephen","course":"English","id":1},{"name":"Abishek","course":"Tamil","id":2},{"name":"James","course":"History","id":3},{"name":"Annie","course":"Games","id":4},{"name":"Joshua ","course":"Hindi","id":5}]

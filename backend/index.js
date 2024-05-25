@@ -1,21 +1,37 @@
-const express = require('express'); 
-const fs = require('fs'); 
+const express = require('express');
+const cors = require('cors');
+
+
+const fs = require('fs');
+
 const app = express(); 
-const Port = 3000; 
 
-let info = [];  
-const data =  fs.readFileSync('./data.json','utf-8');      
-info.push(JSON.parse(data)); 
+app.use(cors());
 
-app.get('/',(req,res) => { 
-    res.send(info)
-});     
+app.use(express.json());
 
-app.post('/',(req,res) => { 
-    
+const Port = 3000;  
+
+let info = [];
+
+try {
+    const getData = fs.readFileSync('./data.json','utf-8');
+    info = JSON.parse(getData); 
+} catch (err) {
+    console.log("Error getting Data");      
+}
+
+app.get('/stephen',(req,res) => {
+    res.send(info);     
 })
 
+app.post('/stephen',(req,res) => {
+    const newData = req.body;
+    info.push(newData);  
+    fs.writeFileSync('./data.json',JSON.stringify(info));
+    res.send(info);   
+})
 
-app.listen(Port,() => { 
-    console.log("Server is Running");  
-})          
+app.listen(Port,() => {
+    console.log(`Server Running on Port ${Port}`);
+})
